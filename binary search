@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main() {
+    int a[5] = {1, 2, 3, 4, 5}, low = 0, high = 4, mid, x, found = 0;
+    printf("Enter element to search: ");
+    scanf("%d", &x);
+    while (low <= high) {
+        mid = (low + high) / 2;
+        if (a[mid] == x) { found = 1; break; }
+        else if (a[mid] < x) low = mid + 1;
+        else high = mid - 1;
+    }
+    if (found) printf("Element found at position %d", mid + 1);
+    else printf("Element not found");
+    return 0;
+}
