@@ -1,1 +1,33 @@
+# Graph represented as a dictionary
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'A': 1, 'C': 2, 'D': 5},
+    'C': {'A': 4, 'B': 2, 'D': 1},
+    'D': {'B': 5, 'C': 1}
+}
 
+def dijkstra(graph, start):
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+    visited = []
+
+    while len(visited) < len(graph):
+        # find the node with the smallest distance
+        min_node = None
+        for node in graph:
+            if node not in visited:
+                if min_node is None or distances[node] < distances[min_node]:
+                    min_node = node
+
+        visited.append(min_node)
+
+        # update distances of neighbors
+        for neighbor, weight in graph[min_node].items():
+            new_dist = distances[min_node] + weight
+            if new_dist < distances[neighbor]:
+                distances[neighbor] = new_dist
+
+    return distances
+
+
+print(dijkstra(graph, 'A'))
