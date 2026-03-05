@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    int i, n;
+    float w[10], p[10], r[10], cap, maxp = 0, t;
+
+    printf("Enter number of items: ");
+    scanf("%d", &n);
+
+    for(i=0;i<n;i++){
+        printf("Weight Profit: ");
+        scanf("%f%f",&w[i],&p[i]);
+        r[i] = p[i]/w[i];
+    }
+
+    printf("Capacity: ");
+    scanf("%f",&cap);
+
+    for(i=0;i<n;i++){
+        if(w[i] <= cap){
+            cap -= w[i];
+            maxp += p[i];
+        }
+        else{
+            maxp += r[i]*cap;
+            break;
+        }
+    }
+
+    printf("Max Profit = %.2f", maxp);
+
+    return 0;
+}
