@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define INF 999
+
+int n=4, cost[4][4]={{0,10,15,20},{10,0,35,25},{15,35,0,30},{20,25,30,0}};
+int visited[4];
+
+int tsp(int city, int count){
+    if(count==n && cost[city][0])
+        return cost[city][0];
+
+    int ans=INF;
+    for(int i=0;i<n;i++){
+        if(!visited[i] && cost[city][i]){
+            visited[i]=1;
+            int temp = cost[city][i] + tsp(i,count+1);
+            if(temp<ans) ans=temp;
+            visited[i]=0;
+        }
+    }
+    return ans;
+}
+
+int main(){
+    visited[0]=1;
+    printf("Min cost: %d", tsp(0,1));
+}
