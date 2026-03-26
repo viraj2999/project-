@@ -1,0 +1,12 @@
+from collections import deque
+
+graph = {0:[1,2], 1:[3], 2:[], 3:[]}
+visited=set()
+q=deque([0])
+
+while q:
+    v=q.popleft()
+    if v not in visited:
+        print(v,end=" ")
+        visited.add(v)
+        q.extend(graph[v])
