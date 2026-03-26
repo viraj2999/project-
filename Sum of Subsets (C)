@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int w[5]={1,2,3,4,5}, x[5];
+
+void subset(int i,int sum,int target,int n){
+    if(sum==target){
+        for(int j=0;j<i;j++)
+            if(x[j]) printf("%d ",w[j]);
+        printf("\n");
+        return;
+    }
+    if(i==n || sum>target) return;
+
+    x[i]=1;
+    subset(i+1,sum+w[i],target,n);
+
+    x[i]=0;
+    subset(i+1,sum,target,n);
+}
+
+int main(){
+    subset(0,0,7,5);
+}
