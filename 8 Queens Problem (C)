@@ -1,0 +1,26 @@
+#include <stdio.h>
+int x[8];
+
+int place(int k,int i){
+    for(int j=0;j<k;j++)
+        if(x[j]==i || abs(x[j]-i)==abs(j-k))
+            return 0;
+    return 1;
+}
+
+void queen(int k){
+    for(int i=0;i<8;i++){
+        if(place(k,i)){
+            x[k]=i;
+            if(k==7){
+                for(int j=0;j<8;j++)
+                    printf("%d ",x[j]);
+                printf("\n");
+            } else queen(k+1);
+        }
+    }
+}
+
+int main(){
+    queen(0);
+}
